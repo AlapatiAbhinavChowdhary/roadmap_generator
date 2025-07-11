@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillBridge - Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-logo">SkillBridge</h2>
+      </div>
+
+      <div class="user-profile-container">
+        <div class="user-profile" id="userProfile">
+          <div class="user-avatar" id="userAvatar">JD</div>
+          <div class="user-info">
+            <h4 id="userName">John Doe</h4>
+            <p id="userCareerPath">Frontend Developer Path</p>
+          </div>
+        </div>
+
+        <div class="profile-menu" id="profileMenu">
+          <div class="profile-menu-item" id="editProfileBtn">
+            <i class="fas fa-user-edit"></i> Edit Profile
+          </div>
+          <div class="profile-menu-item">
+            <i class="fas fa-sign-out-alt"></i> Log Out
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#my-roadmap" class="nav-item" id="myRoadmapLink"><i class="fas fa-road"></i> My Roadmap</a>
+        <a href="#learning-resources" class="nav-item" id="learningResourcesLink"><i class="fas fa-book"></i> Learning Resources</a>
+        <a href="#projects" class="nav-item" id="projectsLink"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="#ai-chat" class="nav-item" id="generateRoadmapBtn"><i class="fas fa-robot"></i> AI Career Assistant</a>
+        <a href="#settings" class="nav-item" id="settingsLink"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+
+      <div class="interview-prep">
+        <h3>Interview Prep</h3>
+        <div class="interview-list" id="interviewList"></div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" style="display: block;">
+      <header class="dashboard-header">
+        <div class="dashboard-title">
+          <h1 id="welcomeTitle">Welcome Back, John!</h1>
+          <p>Here's your personalized learning dashboard</p>
+        </div>
+        <div class="header-actions">
+          <button class="step-btn secondary" id="themeToggle"><i class="fas fa-adjust"></i> Toggle Theme</button>
+          <button class="step-btn secondary"><i class="fas fa-sync"></i> Refresh Roadmap</button>
+          <button class="step-btn primary"><i class="fas fa-download"></i> Export PDF</button>
+        </div>
+      </header>
+
+      <div class="widget-grid">
+        <div class="widget progress-widget">
+          <div class="widget-header">
+            <h3 class="widget-title">Your Progress</h3>
+            <div class="widget-actions"><i class="fas fa-info-circle"></i></div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 65%;"></div>
+          </div>
+          <div class="progress-stats">
+            <div class="progress-stat">
+              <span id="progressPercent">65%</span>
+              <span>Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget weekly-goal-widget">
+          <div class="widget-header">
+            <h3 class="widget-title">Weekly Goal</h3>
+            <div class="widget-actions"><i class="fas fa-info-circle"></i></div>
+          </div>
+          <p id="weeklyGoalText">Complete React Hooks module and build a todo app with state management.</p>
+          <input type="text" class="goal-input" id="weeklyGoalInput" placeholder="Set your weekly goal">
+          <div class="goal-actions">
+            <button class="step-btn primary" id="addWeeklyGoal">Add</button>
+            <button class="step-btn secondary" id="clearWeeklyGoal">Clear</button>
+          </div>
+        </div>
+
+        <div class="widget full-width">
+          <div class="widget-header">
+            <h3 class="widget-title">Daily Interview Question</h3>
+            <div class="widget-actions"><i class="fas fa-info-circle"></i></div>
+          </div>
+          <div class="interview-card">
+            <h4 class="interview-question" id="interviewQuestion">Explain the difference between state and props in React.</h4>
+            <p class="interview-answer" id="interviewAnswer">In React, both props and state are plain JavaScript objects that hold information that influences the output of render. Props are read-only data passed from a parent component to a child component, while state is managed within the component and can change over time, triggering a re-render when updated.</p>
+            <div class="interview-actions">
+              <button class="step-btn primary" id="nextQuestion"><i class="fas fa-arrow-right"></i> Next Question</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- My Roadmap Section -->
+    <section class="main-content" id="my-roadmap" style="display: none;">
+      <header class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>My Roadmap</h1>
+          <p>Your personalized learning path</p>
+        </div>
+        <div class="header-actions">
+          <button class="step-btn secondary" id="themeToggleRoadmap"><i class="fas fa-adjust"></i> Toggle Theme</button>
+          <button class="step-btn secondary" id="backToDashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+          <button class="step-btn primary" id="addSkillToggleBtn"><i class="fas fa-plus"></i> Add Custom Skill</button>
+        </div>
+      </header>
+
+      <div class="widget full-width roadmap-widget">
+        <div class="widget-header">
+          <h3 class="widget-title">Your AI-Powered Roadmap</h3>
+        </div>
+        <div class="add-skill-form-container" id="addSkillFormContainer">
+          <input type="text" class="add-skill-input" id="skillTitle" placeholder="Skill Title">
+          <input type="text" class="add-skill-input" id="skillDescription" placeholder="Skill Description">
+          <div class="add-skill-actions">
+            <button class="step-btn secondary" id="cancelAddSkill">Cancel</button>
+            <button class="step-btn primary" id="submitAddSkill">Add Skill</button>
+          </div>
+        </div>
+        <div class="roadmap-steps" id="roadmapSteps"></div>
+      </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="main-content" id="learning-resources" style="display: none;">
+      <header class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>Learning Resources</h1>
+          <p>Explore recommended learning materials</p>
+        </div>
+        <div class="header-actions">
+          <button class="step-btn secondary" id="themeToggleResources"><i class="fas fa-adjust"></i> Toggle Theme</button>
+          <button class="step-btn secondary" id="backToDashboardResources"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+        </div>
+      </header>
+
+      <div class="widget full-width">
+        <div class="widget-header">
+          <h3 class="widget-title">Recommended Resources</h3>
+          <div class="widget-actions"><i class="fas fa-filter"></i></div>
+        </div>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-image"><i class="fas fa-video"></i></div>
+            <div class="resource-content">
+              <div class="resource-type">Video Course</div>
+              <h4 class="resource-title">React Hooks Explained</h4>
+              <div class="resource-meta">
+                <span>3h 42m</span>
+                <span>Free</span>
+              </div>
+            </div>
+          </div>
+          <div class="resource-card">
+            <div class="resource-image"><i class="fas fa-file-alt"></i></div>
+            <div class="resource-content">
+              <div class="resource-type">Documentation</div>
+              <h4 class="resource-title">React Official Docs</h4>
+              <div class="resource-meta">
+                <span>Reading</span>
+                <span>Free</span>
+              </div>
+            </div>
+          </div>
+          <div class="resource-card">
+            <div class="resource-image"><i class="fas fa-laptop-code"></i></div>
+            <div class="resource-content">
+              <div class="resource-type">Tutorial</div>
+              <h4 class="resource-title">Build a Todo App with React</h4>
+              <div class="resource-meta">
+                <span>1h 15m</span>
+                <span>Free</span>
+              </div>
+            </div>
+          </div>
+          <div class="resource-card">
+            <div class="resource-image"><i class="fas fa-code"></i></div>
+            <div class="resource-content">
+              <div class="resource-type">Practice</div>
+              <h4 class="resource-title">React Hooks Exercises</h4>
+              <div class="resource-meta">
+                <span>15 Problems</span>
+                <span>Free</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="main-content" id="projects" style="display: none;">
+      <header class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>Projects</h1>
+          <p>Explore project ideas by domain</p>
+        </div>
+        <div class="header-actions">
+          <button class="step-btn secondary" id="themeToggleProjects"><i class="fas fa-adjust"></i> Toggle Theme</button>
+          <button class="step-btn secondary" id="backToDashboardProjects"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+        </div>
+      </header>
+
+      <div class="widget full-width projects-widget">
+        <div class="widget-header">
+          <h3 class="widget-title">Project Ideas</h3>
+          <div class="widget-actions"><i class="fas fa-filter"></i></div>
+        </div>
+        <div class="projects-grid">
+          <div class="project-section">
+            <h4>This is for AI/ML</h4>
+            <div class="project-card">
+              <h4 class="project-title">Chatbot Basics</h4>
+              <p class="project-description">Build a simple chatbot using Python and basic ML algorithms.</p>
+              <div class="project-level">Beginner</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">Image Classifier</h4>
+              <p class="project-description">Create an image classification model using TensorFlow.</p>
+              <div class="project-level">Intermediate</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">AI-Powered Recommendation System</h4>
+              <p class="project-description">Develop a recommendation engine with deep learning techniques.</p>
+              <div class="project-level">Advanced</div>
+            </div>
+          </div>
+          <div class="project-section">
+            <h4>This is for Data Science</h4>
+            <div class="project-card">
+              <h4 class="project-title">Data Cleaning Script</h4>
+              <p class="project-description">Write a script to clean and preprocess a dataset using Pandas.</p>
+              <div class="project-level">Beginner</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">Exploratory Data Analysis</h4>
+              <p class="project-description">Perform EDA on a public dataset with visualizations.</p>
+              <div class="project-level">Intermediate</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">Predictive Analytics Model</h4>
+              <p class="project-description">Build a predictive model using machine learning algorithms.</p>
+              <div class="project-level">Advanced</div>
+            </div>
+          </div>
+          <div class="project-section">
+            <h4>This is for DevOps</h4>
+            <div class="project-card">
+              <h4 class="project-title">Basic Docker Setup</h4>
+              <p class="project-description">Containerize a simple app using Docker.</p>
+              <div class="project-level">Beginner</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">CI/CD Pipeline</h4>
+              <p class="project-description">Set up a CI/CD pipeline with Jenkins.</p>
+              <div class="project-level">Intermediate</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">Kubernetes Cluster</h4>
+              <p class="project-description">Deploy a microservices app on a Kubernetes cluster.</p>
+              <div class="project-level">Advanced</div>
+            </div>
+          </div>
+          <div class="project-section">
+            <h4>This is for Frontend</h4>
+            <div class="project-card">
+              <h4 class="project-title">Personal Portfolio</h4>
+              <p class="project-description">Create a static portfolio website with HTML/CSS.</p>
+              <div class="project-level">Beginner</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">Todo List App</h4>
+              <p class="project-description">Build a Todo app with React and local storage.</p>
+              <div class="project-level">Intermediate</div>
+            </div>
+            <div class="project-card">
+              <h4 class="project-title">E-Commerce Website</h4>
+              <p class="project-description">Develop a full e-commerce site with React and payment integration.</p>
+              <div class="project-level">Advanced</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Chat Section -->
+    <section class="main-content" id="ai-chat" style="display: none;">
+      <header class="dashboard-header">
+        <div class="dashboard-title">
+          <h1>AI Career Assistant</h1>
+          <p>Chat with your AI assistant for career guidance and roadmap generation</p>
+        </div>
+        <div class="header-actions">
+          <button class="step-btn secondary" id="themeToggleAI"><i class="fas fa-adjust"></i> Toggle Theme</button>
+          <button class="step-btn secondary" id="backToDashboardAI"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+          <button class="step-btn primary" id="newChatBtn"><i class="fas fa-plus"></i> New Chat</button>
+        </div>
+      </header>
+
+      <div class="widget full-width ai-chat-container">
+        <div class="chat-history">
+          <h4>Chat History</h4>
+          <div class="chat-history-list" id="chatHistoryList"></div>
+        </div>
+        <div class="ai-chat-main">
+          <div class="ai-header">
+            <h3 class="widget-title">AI Career Assistant</h3>
+          </div>
+          <div class="ai-messages" id="aiMessages" style="height: 500px; overflow-y: auto; padding: 15px;">
+            <div class="ai-message bot">Hi John! I'm your AI career assistant. How can I help you with your frontend development journey today? Type your question or request a roadmap (e.g., "Generate a roadmap for Frontend Developer, 6 months").</div>
+          </div>
+          <div class="ai-input-container">
+            <input type="text" class="ai-input" id="aiInput" placeholder="Ask anything or request a roadmap...">
+            <button class="ai-send" id="aiSend"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Modal -->
+    <div class="modal-overlay" id="profileModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit Profile</h3>
+          <button class="modal-close-btn" id="profileModalClose">×</button>
+        </div>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="profileName">Full Name</label>
+            <input type="text" id="profileName" required>
+          </div>
+          <div class="form-group">
+            <label for="profileCareerPath">Career Path</label>
+            <input type="text" id="profileCareerPath" value="Frontend Developer Path" required>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="step-btn secondary" id="profileCancel">Cancel</button>
+            <button type="submit" class="step-btn primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Settings</h3>
+          <button class="modal-close-btn" id="settingsModalClose">×</button>
+        </div>
+        <form id="settingsForm">
+          <div class="form-group">
+            <label for="settingsName">Full Name</label>
+            <input type="text" id="settingsName" required>
+          </div>
+          <div class="form-group">
+            <label for="settingsEmail">Email</label>
+            <input type="email" id="settingsEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input type="password" id="confirmPassword" required>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="step-btn secondary" id="settingsCancel">Cancel</button>
+            <button type="submit" class="step-btn primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

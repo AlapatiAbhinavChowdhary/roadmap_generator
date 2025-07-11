@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillBridge - AI-Powered Career Roadmap</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor dot"></div>
+    <div class="cursor circle"></div>
+
+    <!-- Login/Signup Modals (Structure will be filled by JS) -->
+    <div class="auth-modal" id="loginModal"></div>
+    <div class="auth-modal" id="signupModal"></div>
+
+    <!-- Header Navigation -->
+    <header class="top-nav">
+      <div class="logo" data-page="landing">SkillBridge</div>
+      <nav>
+        <a href="#features" class="scroll-link">Features</a>
+        <a href="#how-it-works" class="scroll-link">How It Works</a>
+        <a href="#" data-page="contact" class="nav-page-link">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+        </button>
+        <button id="loginBtn">Login</button>
+        <button id="signupBtn">Sign Up</button>
+      </div>
+    </header>
+  
+    <main>
+        <!-- LANDING PAGE (Initially visible) -->
+        <div class="page active" id="landingPage">
+            <section class="hero">
+              <div class="hero-text animate-on-scroll"><h1>Unlock Your Tech Career Potential</h1><p>SkillBridge's AI builds a personalized roadmap with curated skills, free resources, and mini-projects to land your dream tech job.</p><div class="hero-buttons"><button class="btn btn-primary" id="getStartedBtn">Start Your Journey</button></div></div>
+              <div class="hero-image animate-on-scroll"><div class="energy-circle" id="energyCircle"></div></div>
+            </section>
+            
+            <section id="features" class="features-section"><h2 class="section-title animate-on-scroll">What We Offer</h2><div class="feature-list"><div class="feature animate-on-scroll"><h3>AI Plan</h3><p>Weekly, tailored learning paths that adapt to your progress and goals.</p></div><div class="feature animate-on-scroll" style="transition-delay:100ms"><h3>Mini-Projects</h3><p>Build hands-on skills with practical, portfolio-worthy projects.</p></div><div class="feature animate-on-scroll" style="transition-delay:200ms"><h3>Track Progress</h3><p>Visual, actionable dashboard to monitor your learning journey.</p></div></div></section>
+            
+            <!-- NEW "HOW IT WORKS" SECTION -->
+            <section id="how-it-works" class="section">
+                <h2 class="section-title animate-on-scroll">How It Works</h2>
+                <p class="section-subtitle animate-on-scroll">
+                    Follow a simple, AI-driven process to accelerate your career growth.
+                </p>
+                <div class="how-it-works-grid">
+                    <div class="how-it-works-step animate-on-scroll">
+                        <div class="step-number">01</div>
+                        <div class="step-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Define Your Goal</h3>
+                        <p>Tell our AI your dream role, like "Backend Developer" or "Data Scientist".</p>
+                    </div>
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay:100ms">
+                        <div class="step-number">02</div>
+                        <div class="step-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Get AI Roadmap</h3>
+                        <p>Receive a custom, step-by-step learning path with skills and resources.</p>
+                    </div>
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay:200ms">
+                        <div class="step-number">03</div>
+                        <div class="step-icon"><i class="fas fa-code"></i></div>
+                        <h3>Learn and Build</h3>
+                        <p>Complete curated tutorials and build mini-projects to solidify your skills.</p>
+                    </div>
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay:300ms">
+                        <div class="step-number">04</div>
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Achieve Career</h3>
+                        <p>Track your progress, build your portfolio, and land your dream job.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section"><h2 class="section-title animate-on-scroll">Our Impact</h2><div class="stats-grid"><div class="stat-item animate-on-scroll"><div class="stat-number" data-target="10000">0</div><div class="stat-label">Roadmaps Created</div></div><div class="stat-item animate-on-scroll"><div class="stat-number" data-target="94">0</div><div class="stat-label">User Success Rate %</div></div><div class="stat-item animate-on-scroll"><div class="stat-number" data-target="4.9" data-decimal="true">0</div><div class="stat-label">User Satisfaction</div></div/executable></div></section>
+            <section class="cta-section"><h2 class="section-title animate-on-scroll">Have Questions?</h2><p class="section-subtitle animate-on-scroll">Our team is here to help you on your journey. Reach out to us anytime.</p><button class="btn btn-primary nav-page-link" data-page="contact">Get In Touch</button></section>
+        </div>
+
+        <!-- CONTACT PAGE (Initially hidden) -->
+        <div class="page" id="contactPage">
+            <div class="contact-page-container">
+                <div class="contact-header">
+                    <h1 class="section-title">Get In Touch</h1>
+                    <p class="section-subtitle">We'd love to hear from you. Whether you have a question about features, pricing, or anything else, our team is ready to answer all your questions.</p>
+                </div>
+                <div class="contact-grid">
+                    <form class="contact-form" id="mainContactForm">
+                        <div class="form-group"><label for="contactName">Name</label><input type="text" id="contactName" placeholder="Enter your name" required></div>
+                        <div class="form-group"><label for="contactEmail">Email</label><input type="email" id="contactEmail" placeholder="Enter your email" required></div>
+                        <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" placeholder="How can we help?" required></textarea></div>
+                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-info-item"><i class="fas fa-envelope"></i><a href="mailto:hello@skillbridge.ai">hello@skillbridge.ai</a></div>
+                        <div class="contact-info-item"><i class="fas fa-map-marker-alt"></i><span>Silicon Valley, California</span></div>
+                        <div class="contact-socials">
+                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center; margin-top: 60px;">
+                    <button class="btn nav-page-link" data-page="landing"> ← Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="home.js"></script>
+</body>
+</html>
